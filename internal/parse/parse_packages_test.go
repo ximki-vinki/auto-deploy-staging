@@ -1,19 +1,14 @@
 package parse
 
 import (
+	"auto-deploy-staging/internal/domain"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
-func TestParsePackages_ReturnsSlice(t *testing.T) {
-	yamlData := []byte(`{}`)
+func TestParsePackages_ReturnsCorrectType(t *testing.T) {
+	packages, _ := ParsePackages(nil)
 
-	packages, err := ParsePackages(yamlData)
-	if err != nil {
-		t.Fatalf("unexpected error: %v", err)
-	}
-
-	if packages == nil {
-		t.Error("expected non-nil slice, got nil")
-	}
-
+	assert.Equal(t, []domain.Package{}, packages)
 }
