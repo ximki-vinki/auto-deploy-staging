@@ -7,17 +7,16 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestParsePackages_OnePackage(t *testing.T) {
+func TestParseWorkspace_OnePackage(t *testing.T) {
 	yamlData := []byte(`
 pim-pim:
   repository: git@git.test.ru:auchan/pim/pim/pim.git
 `)
 
-	packages, _ := ParsePackages(yamlData)
+	packages, _ := Workspace(yamlData)
 
 	require.Len(t, packages, 1)
 
-	pkg := packages[0]
-	assert.Equal(t, "pim-pim", pkg.Name)
+	pkg := packages["pim-pim"]
 	assert.Equal(t, "git@git.test.ru:auchan/pim/pim/pim.git", pkg.Repository)
 }
