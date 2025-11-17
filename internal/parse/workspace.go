@@ -6,12 +6,15 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+type workspaceConfig struct {
+	Services map[string]domain.Package `yaml:"services"`
+}
+
 func Workspace(yamlData []byte) (map[string]domain.Package, error) {
-	var packages map[string]domain.Package
-	err := yaml.Unmarshal(yamlData, &packages)
+	var workspace workspaceConfig
+	err := yaml.Unmarshal(yamlData, &workspace)
 	if err != nil {
 		return nil, err
 	}
-
-	return packages, nil
+	return workspace.Services, nil
 }
