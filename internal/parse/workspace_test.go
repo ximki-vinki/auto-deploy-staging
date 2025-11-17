@@ -9,8 +9,9 @@ import (
 
 func TestParseWorkspace_OnePackage(t *testing.T) {
 	yamlData := []byte(`
-pim-pim:
-  repository: git@git.test.ru:auchan/pim/pim/pim.git
+services:
+  pim-pim:
+    repository: git@git.test.ru:auchan/pim/pim/pim.git
 `)
 
 	packages, _ := Workspace(yamlData)
