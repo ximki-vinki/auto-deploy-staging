@@ -1,4 +1,4 @@
-package settings
+package domain
 
 type Config struct {
 	Token             string `json:"token"`

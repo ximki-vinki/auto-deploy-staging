@@ -1,7 +1,6 @@
-package settings
+package domain
 
-type Service struct {
-	Name           string `json:"name"`
+type SettingService struct {
 	WorkspaceName  string `json:"workspace_name"`
 	KubernetesName string `json:"Kubernetes_name"`
 	Disabled       bool   `json:"disabled"`
