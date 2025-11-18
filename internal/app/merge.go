@@ -8,6 +8,8 @@ import (
 	"io"
 	"net/http"
 	"os"
+
+	"github.com/joho/godotenv"
 )
 
 const gitLabURL = "https://git.greensight.ru/api/v4/projects/auchan%2Fdevops%2Fdeveloper-pipelines/repository/files/README.md/raw?ref=master"
@@ -64,11 +66,14 @@ func Convert(settings []domain.SettingService, packages map[string]domain.Packag
 	return result
 }
 
-func fetchFromGitLab() ([]byte, error) {
-	url := os.Getenv("GITLAB_GET_README")
+// TODO перенести в правильное место потом
+func getReadmeStage() ([]byte, error) {
+	err := godotenv.Load("../../.env")
+
+	url := os.Getenv("GITLAB_GET_README_URL")
 	token := os.Getenv("GITLAB_PRIVATE_TOKEN")
 	if url == "" {
-		return nil, fmt.Errorf("GITLAB_GET_README is not set")
+		return nil, fmt.Errorf("GITLAB_GET_README_URL is not set")
 	}
 	if token == "" {
 		return nil, fmt.Errorf("GITLAB_PRIVATE_TOKEN is not set")

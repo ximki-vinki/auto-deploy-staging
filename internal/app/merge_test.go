@@ -41,3 +41,12 @@ services:
 		assert.Equal(t, "repo1", result[0].Repository)
 	}
 }
+
+//TODO потом удалить
+/*func TestGetReadmeStage(t *testing.T) {
+	data, err := getReadmeStage()
+	if err != nil {
+		t.Fatalf("getReadmeStage failed: %v", err)
+	}
+	fmt.Printf("%s\n", data) // или fmt.Println(string(data))
+}*/
